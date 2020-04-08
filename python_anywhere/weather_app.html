@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <style>
+        h1{
+            font-size:2.5em;
+            margin:3px;
+        }
+
+        h2{
+            margin-top:0px;
+        }
+        h3 {
+            margin: 0;
+        }
+
+        .myButton {
+            font-size: 18px;
+            background: #8BC34A;
+            border-radius: 30px;
+            padding: 15px;
+            font-weight: bold;
+        }
+
+        .linkButton {
+            background: #FFEB3B;
+            margin: 5px;
+        }
+
+        a {
+            border: #9e9e9e3d;
+            border-style: solid;
+            background: #9e9e9e3d;
+            font-size: 15px;
+            text-decoration: none;
+        }
+
+        a:visited {
+            color: blue;
+        }
+
+        p {
+            line-height: 2;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <form action="/plot.png" method="post">
+            <section>
+                <h1>ClimbCast</h1>
+                <h2>3-Day Weather Report</h2>
+                <h3>Location</h3>
+                <select name="place" size="{{ spot_dict|length }}" required>
+                    {% for k,spot in spot_dict.items() %}
+                      <option value={{k}}>{{spot.name}}</option>
+                    {% endfor %}
+                </select>
+            </section>
+
+            <section>
+                <br>
+                <h3>Date Range</h3>
+                <select name="day" size="7" required>
+                    <option value="Friday">Friday-Sunday</option>
+                    <option value="Saturday">Saturday-Monday</option>
+                    <option value="Sunday">Sunday-Tuesday</option>
+                    <option value="Monday">Monday-Wednesday</option>
+                    <option value="Tuesday">Tuesday-Thursday</option>
+                    <option value="Wednesday">Wednesday-Friday</option>
+                    <option value="Thursday">Thursday-Saturday</option>
+                </select>
+            </section>
+
+            <section>
+                <br>
+                <button class="myButton" name="btn" type="submit">View Report</button>
+            </section>
+            <section>
+                <br>
+                <hr style="border: 3px solid grey;">
+                <h2>Mountain Project Pages</h2>
+                <p>
+                    {% for key,spot in spot_dict.items() %}
+                        <a href="{{spot.weblink}}">{{spot.name}}</a>
+                    {% endfor %}
+                </p>
+            </section>
+        </form>
+    </center>
+</body>
+
+</html>
